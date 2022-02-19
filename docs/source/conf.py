@@ -12,7 +12,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import evalml
+import rayml
 import os
 import sys
 import subprocess
@@ -29,14 +29,14 @@ sys.path.insert(0, os.path.abspath(path))
 
 # -- Project information -----------------------------------------------------
 
-project = "EvalML"
+project = "rayml"
 copyright = "2020, Alteryx, Inc."
 author = "Alteryx, Inc."
 
 # The short X.Y version
-version = evalml.__version__
+version = rayml.__version__
 # The full version, including alpha/beta/rc tags
-release = evalml.__version__
+release = rayml.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -58,8 +58,8 @@ extensions = [
     "sphinx.ext.inheritance_diagram",
 ]
 
-autoapi_dirs = ['../../evalml']
-autoapi_ignore = ["*/evalml/tests/*"]
+autoapi_dirs = ['../../rayml']
+autoapi_ignore = ["*/rayml/tests/*"]
 autoapi_options = ['members', 'undoc-members', 'show-module-summary', 'imported-members', 'inherited-members']
 autoapi_add_toctree_entry = False
 autoapi_template_dir = "_auto_api_templates"
@@ -103,7 +103,7 @@ html_theme = "pydata_sphinx_theme"
 # documentation.
 #
 html_theme_options = {
-    "github_url": "https://github.com/alteryx/evalml",
+    "github_url": "https://github.com/alteryx/rayml",
     "twitter_url": "https://twitter.com/AlteryxOSS",
     "collapse_navigation": False,
     "navigation_depth": 2,
@@ -111,7 +111,7 @@ html_theme_options = {
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = "images/evalml_horizontal.svg"
+html_logo = "images/rayml_horizontal.svg"
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -137,7 +137,7 @@ html_static_path = ["_static"]
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "EvalMLdoc"
+htmlhelp_basename = "raymldoc"
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -161,7 +161,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "EvalML.tex", "EvalML Documentation", author, "manual"),
+    (master_doc, "rayml.tex", "rayml Documentation", author, "manual"),
 ]
 
 
@@ -169,7 +169,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "evalml", "EvalML Documentation", [author], 1)]
+man_pages = [(master_doc, "rayml", "rayml Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------------
@@ -180,10 +180,10 @@ man_pages = [(master_doc, "evalml", "EvalML Documentation", [author], 1)]
 texinfo_documents = [
     (
         master_doc,
-        "EvalML",
-        "EvalML Documentation",
+        "rayml",
+        "rayml Documentation",
         author,
-        "EvalML",
+        "rayml",
         "One line description of project.",
         "Miscellaneous",
     ),
@@ -209,10 +209,10 @@ epub_exclude_files = ["search.html"]
 
 # -- Extension configuration -------------------------------------------------
 
-# If evalml is open-sourced: replace github specific style.css
+# If rayml is open-sourced: replace github specific style.css
 extlinks = {
-    "issue": ("https://github.com/alteryx/evalml/issues/%s", "#"),
-    "pr": ("https://github.com/alteryx/evalml/pull/%s", "#"),
+    "issue": ("https://github.com/alteryx/rayml/issues/%s", "#"),
+    "pr": ("https://github.com/alteryx/rayml/pull/%s", "#"),
     "user": ("https://github.com/%s", "@"),
 }
 
@@ -235,7 +235,7 @@ class AccessorLevelDocumenter(Documenter):
     """
 
     def resolve_name(self, modname, parents, path, base):
-        modname = "evalml"
+        modname = "rayml"
         mod_cls = path.rstrip(".")
         mod_cls = mod_cls.split(".")
         return modname, mod_cls + [base]

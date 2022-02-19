@@ -1,30 +1,30 @@
 <p align="center">
-<img width=50% src="https://evalml-web-images.s3.amazonaws.com/evalml_horizontal.svg" alt="EvalML" />
+<img width=50% src="https://rayml-web-images.s3.amazonaws.com/rayml_horizontal.svg" alt="rayml" />
 </p>
 
 <p align="center">
     <a href="https://github.com/alteryx/woodwork/actions?query=branch%3Amain+workflow%3ATests" target="_blank">
         <img src="https://github.com/alteryx/woodwork/workflows/Tests/badge.svg?branch=main" alt="Tests" />
     </a>
-    <a href="https://codecov.io/gh/alteryx/evalml">
-        <img src="https://codecov.io/gh/alteryx/evalml/branch/main/graph/badge.svg?token=JDc0Ib7kYL"/>
+    <a href="https://codecov.io/gh/alteryx/rayml">
+        <img src="https://codecov.io/gh/alteryx/rayml/branch/main/graph/badge.svg?token=JDc0Ib7kYL"/>
     </a>
-    <a href="https://evalml.alteryx.com/en/latest/?badge=stable" target="_blank">
-        <img src="https://readthedocs.com/projects/feature-labs-inc-evalml/badge/?version=stable" alt="Documentation Status" />
+    <a href="https://rayml.alteryx.com/en/latest/?badge=stable" target="_blank">
+        <img src="https://readthedocs.com/projects/feature-labs-inc-rayml/badge/?version=stable" alt="Documentation Status" />
     </a>
-    <a href="https://badge.fury.io/py/evalml" target="_blank">
-        <img src="https://badge.fury.io/py/evalml.svg?maxAge=2592000" alt="PyPI Version" />
+    <a href="https://badge.fury.io/py/rayml" target="_blank">
+        <img src="https://badge.fury.io/py/rayml.svg?maxAge=2592000" alt="PyPI Version" />
     </a>
-    <a href="https://anaconda.org/conda-forge/evalml" target="_blank">
-        <img src="https://anaconda.org/conda-forge/evalml/badges/version.svg" alt="Anaconda Version" />
+    <a href="https://anaconda.org/conda-forge/rayml" target="_blank">
+        <img src="https://anaconda.org/conda-forge/rayml/badges/version.svg" alt="Anaconda Version" />
     </a>
-    <a href="https://pepy.tech/project/evalml" target="_blank">
-        <img src="https://pepy.tech/badge/evalml/month" alt="PyPI Downloads" />
+    <a href="https://pepy.tech/project/rayml" target="_blank">
+        <img src="https://pepy.tech/badge/rayml/month" alt="PyPI Downloads" />
     </a>
 </p>
 <hr>
 
-EvalML is an AutoML library which builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.
+rayml is an AutoML library which builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.
 
 **Key Functionality**
 
@@ -36,16 +36,16 @@ EvalML is an AutoML library which builds, optimizes, and evaluates machine learn
 
 ## Installation 
 
-Install from [PyPI](https://pypi.org/project/evalml/):
+Install from [PyPI](https://pypi.org/project/rayml/):
 
 ```bash
-pip install evalml
+pip install rayml
 ```
 
-or from the conda-forge channel on [conda](https://anaconda.org/conda-forge/evalml):
+or from the conda-forge channel on [conda](https://anaconda.org/conda-forge/rayml):
 
 ```bash
-conda install -c conda-forge evalml
+conda install -c conda-forge rayml
 ```
 
 ### Add-ons
@@ -54,7 +54,7 @@ conda install -c conda-forge evalml
 PyPI:
 
 ```bash
-pip install "evalml[update_checker]"
+pip install "rayml[update_checker]"
 ```
 Conda:
 ```
@@ -65,14 +65,14 @@ conda install -c conda-forge alteryx-open-src-update-checker
 
 #### Load and split example data 
 ```python
-import evalml
-X, y = evalml.demos.load_breast_cancer()
-X_train, X_test, y_train, y_test = evalml.preprocessing.split_data(X, y, problem_type='binary')
+import rayml
+X, y = rayml.demos.load_breast_cancer()
+X_train, X_test, y_train, y_test = rayml.preprocessing.split_data(X, y, problem_type='binary')
 ```
 
 #### Run AutoML
 ```python
-from evalml.automl import AutoMLSearch
+from rayml.automl import AutoMLSearch
 automl = AutoMLSearch(X_train=X_train, y_train=y_train, problem_type='binary')
 automl.search()
 ```
@@ -90,25 +90,25 @@ pipeline.predict(X_test)
 
 ## Next Steps
 
-Read more about EvalML on our [documentation page](https://evalml.alteryx.com/):
+Read more about rayml on our [documentation page](https://rayml.alteryx.com/):
 
-* [Installation](https://evalml.alteryx.com/en/stable/install.html) and [getting started](https://evalml.alteryx.com/en/stable/start.html).
-* [Tutorials](https://evalml.alteryx.com/en/stable/tutorials.html) on how to use EvalML.
-* [User guide](https://evalml.alteryx.com/en/stable/user_guide.html) which describes EvalML's features.
-* Full [API reference](https://evalml.alteryx.com/en/stable/api_reference.html)
+* [Installation](https://rayml.alteryx.com/en/stable/install.html) and [getting started](https://rayml.alteryx.com/en/stable/start.html).
+* [Tutorials](https://rayml.alteryx.com/en/stable/tutorials.html) on how to use rayml.
+* [User guide](https://rayml.alteryx.com/en/stable/user_guide.html) which describes rayml's features.
+* Full [API reference](https://rayml.alteryx.com/en/stable/api_reference.html)
 
 ## Support
 
-The EvalML community is happy to provide support to users of EvalML. Project support can be found in four places depending on the type of question:
-1. For usage questions, use [Stack Overflow](https://stackoverflow.com/questions/tagged/evalml) with the `evalml` tag.
-2. For bugs, issues, or feature requests start a [Github issue](https://github.com/alteryx/evalml/issues).
+The rayml community is happy to provide support to users of rayml. Project support can be found in four places depending on the type of question:
+1. For usage questions, use [Stack Overflow](https://stackoverflow.com/questions/tagged/rayml) with the `rayml` tag.
+2. For bugs, issues, or feature requests start a [Github issue](https://github.com/alteryx/rayml/issues).
 3. For discussion regarding development on the core library, use [Slack](https://join.slack.com/t/featuretools/shared_invite/enQtNTEwODEzOTEwMjg4LTQ1MjZlOWFmZDk2YzAwMjEzNTkwZTZkN2NmOGFjOGI4YzE5OGMyMGM5NGIxNTE4NjkzYWI3OWEwZjkyZGExYmQ).
 4. For everything else, the core developers can be reached by email at open_source_support@alteryx.com
 
 ## Built at Alteryx Innovation Labs
 
-**EvalML** is an open source project built by [Alteryx](https://www.alteryx.com). To see the other open source projects we’re working on visit [Alteryx Open Source](https://www.alteryx.com/open-source). If building impactful data science pipelines is important to you or your business, please get in touch.
+**rayml** is an open source project built by [Alteryx](https://www.alteryx.com). To see the other open source projects we’re working on visit [Alteryx Open Source](https://www.alteryx.com/open-source). If building impactful data science pipelines is important to you or your business, please get in touch.
 
 <a href="https://www.alteryx.com/innovation-labs">
-    <img src="https://evalml-web-images.s3.amazonaws.com/alteryx_innovation_labs.png" alt="Alteryx Innovation Labs" />
+    <img src="https://rayml-web-images.s3.amazonaws.com/alteryx_innovation_labs.png" alt="Alteryx Innovation Labs" />
 </a>

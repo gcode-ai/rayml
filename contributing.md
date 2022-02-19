@@ -1,7 +1,7 @@
 ## Contributing to the Codebase
 
 #### 0. Access ZenHub
-We currently utilize ZenHub as our project management tool for EvalML. Please do the following:
+We currently utilize ZenHub as our project management tool for rayml. Please do the following:
 * Access ZenHub directly through GitHub (using the [extension](https://www.zenhub.com/extension)) or [here](https://app.zenhub.com/)
 * Be assigned or assign yourself work from the `Sprint Backlog` and then `Development Backlog`
 * Connect your PR to your issue so it behaves as one
@@ -16,18 +16,18 @@ More details about ZenHub and its best practices can be found [here](https://bit
 
 #### 1. Clone repo
 The code is hosted on GitHub, so you will need to use Git to clone the project and make changes to the codebase. Once you have obtained a copy of the code, you should create a development environment that is separate from your existing Python environment so that you can make and test changes without compromising your own work environment.
-* clone with `git clone https://github.com/alteryx/evalml.git`
+* clone with `git clone https://github.com/alteryx/rayml.git`
 * install in edit mode with:
     ```bash
     # move into the repo
-    cd evalml
+    cd rayml
     # installs the repo in edit mode, meaning changes to any files will be picked up in python. also installs all dependencies.
     make installdeps-dev
     ```
 
 Note that if you're on Mac, there are a few extra steps you'll want to keep track of.
-* In order to run on Mac, [LightGBM requires the OpenMP library to be installed](https://evalml.alteryx.com/en/stable/install.html#Mac), which can be done with HomeBrew by running `brew install libomp`
-* We've seen some installs get the following warning when importing evalml: "UserWarning: Could not import the lzma module. Your installed Python is incomplete. Attempting to use lzma compression will result in a RuntimeError". [A known workaround](https://stackoverflow.com/a/61531555/841003) is to run `brew reinstall readline xz` before installing the python version you're using via pyenv. If you've already installed a python version in pyenv, consider deleting it and reinstalling. v3.8.2 is known to work.
+* In order to run on Mac, [LightGBM requires the OpenMP library to be installed](https://rayml.alteryx.com/en/stable/install.html#Mac), which can be done with HomeBrew by running `brew install libomp`
+* We've seen some installs get the following warning when importing rayml: "UserWarning: Could not import the lzma module. Your installed Python is incomplete. Attempting to use lzma compression will result in a RuntimeError". [A known workaround](https://stackoverflow.com/a/61531555/841003) is to run `brew reinstall readline xz` before installing the python version you're using via pyenv. If you've already installed a python version in pyenv, consider deleting it and reinstalling. v3.8.2 is known to work.
 
 #### 2. Implement your Pull Request
 
@@ -72,12 +72,12 @@ Note that if you're building docs locally, the warning suppression code at `docs
 
 * We use GitHub Actions to run our PR checkin tests. On creation of the PR and for every change you make to your PR, you'll need a maintainer to click "Approve and run" on your PR. This is a change [GitHub made in April 2021](https://github.blog/2021-04-22-github-actions-update-helping-maintainers-combat-bad-actors/).
 
-* We ask that all contributors sign our contributor license agreement (CLA) the first time they contribute to evalml. The CLA assistant will place a message on your PR; follow the instructions there to sign the CLA.
+* We ask that all contributors sign our contributor license agreement (CLA) the first time they contribute to rayml. The CLA assistant will place a message on your PR; follow the instructions there to sign the CLA.
 
 Add a description of your PR to the subsection that most closely matches your contribution:
-    * Enhancements: new features or additions to EvalML.
+    * Enhancements: new features or additions to rayml.
     * Fixes: things like bugfixes or adding more descriptive error messages.
-    * Changes: modifications to an existing part of EvalML.
+    * Changes: modifications to an existing part of rayml.
     * Documentation Changes
     * Testing Changes
 
@@ -92,12 +92,12 @@ If your work includes a [breaking change](https://en.wiktionary.org/wiki/breakin
 
 ### 4. Updating our conda package
 
-We maintain a conda package [package](https://anaconda.org/conda-forge/evalml) to give users more options of how to install EvalML.
+We maintain a conda package [package](https://anaconda.org/conda-forge/rayml) to give users more options of how to install rayml.
 Conda packages are created from recipes, which are yaml config files that list a package's dependencies and tests. Here is 
-EvalML's latest published [recipe](https://github.com/conda-forge/evalml-core-feedstock/blob/master/recipe/meta.yaml).
+rayml's latest published [recipe](https://github.com/conda-forge/rayml-core-feedstock/blob/master/recipe/meta.yaml).
 GitHub repositories containing conda recipes are called `feedstocks`.
 
-If you opened a PR to EvalML that modifies `requirements.txt` or `core-requirements.txt`, or if the latest dependency bot
+If you opened a PR to rayml that modifies `requirements.txt` or `core-requirements.txt`, or if the latest dependency bot
 updates the latest version of one of our packages, you will see a CI job called `build_conda_pkg`. This section describes
 what `build_conda_pkg` does and what to do if you see it fails in your pr. 
 
@@ -109,24 +109,24 @@ we released a dependency version that is not compatible with our conda recipe. I
 release-time since the PyPi release includes many possible PRs that could have introduced that change.
 
 #### How does `build_conda_pkg` work?
-`build_conda_pkg` will clone the `master` branch of the feedstock as well as you EvalML PR branch. It will
+`build_conda_pkg` will clone the `master` branch of the feedstock as well as you rayml PR branch. It will
 then replace the recipe in the `master` branch of the feedstock with the current
-latest [recipe](https://github.com/alteryx/evalml/blob/make-it-easier-to-fix-build-conda-pkg/.github/meta.yaml) in EvalML.
-It will also modify the [source](https://github.com/alteryx/evalml/blob/make-it-easier-to-fix-build-conda-pkg/.github/meta.yaml#L7)
-field of the local copy of the recipe and point it at the local EvalML clone of your PR branch.
+latest [recipe](https://github.com/alteryx/rayml/blob/make-it-easier-to-fix-build-conda-pkg/.github/meta.yaml) in rayml.
+It will also modify the [source](https://github.com/alteryx/rayml/blob/make-it-easier-to-fix-build-conda-pkg/.github/meta.yaml#L7)
+field of the local copy of the recipe and point it at the local rayml clone of your PR branch.
 This has the effect of building our conda package against your PR branch!
 
-#### Why does `build_conda_pkg` use a recipe in EvalML as opposed to the recipe in the feedstock `master` branch?
+#### Why does `build_conda_pkg` use a recipe in rayml as opposed to the recipe in the feedstock `master` branch?
 One important fact to know about conda is that any change to the `master` branch of a feedstock will
 result in a new version of the conda package being published to the world!
 
 With this in mind, let's say your PR requires modifying our dependencies. 
-If we made a change to `master`, an updated version of EvalML's latest conda package would
-be released. This means people who installed the latest version of EvalML prior to this PR would get different dependency versions
-than those who installed EvalML after the PR got merged on GitHub. This is not desirable, especially because the PR would not get shipped
+If we made a change to `master`, an updated version of rayml's latest conda package would
+be released. This means people who installed the latest version of rayml prior to this PR would get different dependency versions
+than those who installed rayml after the PR got merged on GitHub. This is not desirable, especially because the PR would not get shipped
 to PyPi until the next release happens. So there would also be a discrepancy between the PyPi and conda versions.
 
-By using a recipe stored in the EvalML repo, we can keep track of the changes that need to be made for the next release without
+By using a recipe stored in the rayml repo, we can keep track of the changes that need to be made for the next release without
 having to publish a new conda package. Since the recipe is also "unique" to your PR, you are free to make whatever changes you
 need to make without disturbing other PRs. This would not be the case if `build_conda_pkg` ran from the `master` branch of the
 feedstock.

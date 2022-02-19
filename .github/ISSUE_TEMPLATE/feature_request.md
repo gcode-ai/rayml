@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-- As a [user/developer], I wish I could use EvalML to ...
+- As a [user/developer], I wish I could use rayml to ...
 
 #### Code Example
 

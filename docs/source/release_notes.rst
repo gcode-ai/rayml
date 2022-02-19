@@ -184,7 +184,7 @@
     **Breaking Changes**
         * Renamed ``DelayedFeatureTransformer`` to ``TimeSeriesFeaturizer`` :pr:`3028`
         * ``ProphetRegressor`` now requires a datetime column in ``X`` represented by the ``date_index`` parameter :pr:`3104`
-        * Renamed module ``evalml.data_checks.invalid_target_data_check`` to ``evalml.data_checks.invalid_targets_data_check`` :pr:`3122`
+        * Renamed module ``rayml.data_checks.invalid_target_data_check`` to ``rayml.data_checks.invalid_targets_data_check`` :pr:`3122`
         * Removed unused ``EnsembleMissingPipelinesError`` exception definition :pr:`3131`
 
 
@@ -330,7 +330,7 @@
         * Added support for linting jupyter notebooks and clearing the executed cells and empty cells :pr:`2829` :pr:`2837`
         * Added "DROP_ROWS" action to output of ``OutliersDataCheck.validate()`` :pr:`2820`
         * Added the ability of ``AutoMLSearch`` to accept a ``SequentialEngine`` instance as engine input :pr:`2838`
-        * Added new label encoder component to EvalML :pr:`2853`
+        * Added new label encoder component to rayml :pr:`2853`
         * Added our own partial dependence implementation :pr:`2834`
     * Fixes
         * Fixed bug where ``calculate_permutation_importance`` was not calculating the right value for pipelines with target transformers :pr:`2782`
@@ -560,7 +560,7 @@
         * Updated our components with an attribute that describes if they modify features or targets and can be used in list API for pipeline initialization :pr:`2504`
         * Updated ``ComponentGraph`` to accept X and y as inputs :pr:`2507`
         * Removed unused ``TARGET_BINARY_INVALID_VALUES`` from ``DataCheckMessageCode`` enum and fixed formatting of objective documentation :pr:`2520`
-        * Added ``EvalMLAlgorithm`` :pr:`2525`
+        * Added ``raymlAlgorithm`` :pr:`2525`
         * Added support for `NaN` values in ``TextFeaturizer`` :pr:`2532`
     * Fixes
         * Fixed ``FraudCost`` objective and reverted threshold optimization method for binary classification to ``Golden`` :pr:`2450`
@@ -576,7 +576,7 @@
     * Documentation Changes
         * Moved docstrings from ``__init__`` to class pages, added missing docstrings for missing classes, and updated missing default values :pr:`2452`
         * Build documentation with sphinx-autoapi :pr:`2458`
-        * Change ``autoapi_ignore`` to only ignore files in ``evalml/tests/*`` :pr:`2530` 
+        * Change ``autoapi_ignore`` to only ignore files in ``rayml/tests/*`` :pr:`2530`
     * Testing Changes
         * Fixed flaky dask tests :pr:`2471`
         * Removed shellcheck action from ``build_conda_pkg`` action :pr:`2514`
@@ -631,7 +631,7 @@
         * Replaced ``Elastic Net Classifier`` base class with ``Logistsic Regression`` to avoid ``NaN`` outputs :pr:`2420`
     * Changes
         * Cleaned up ``PipelineBase``'s ``component_graph`` and ``_component_graph`` attributes. Updated ``PipelineBase`` ``__repr__`` and added ``__eq__`` for ``ComponentGraph`` :pr:`2332`
-        * Added and applied  ``black`` linting package to the EvalML repo in place of ``autopep8`` :pr:`2306`
+        * Added and applied  ``black`` linting package to the rayml repo in place of ``autopep8`` :pr:`2306`
         * Separated `custom_hyperparameters` from pipelines and added them as an argument to ``AutoMLSearch`` :pr:`2317`
         * Replaced `allowed_pipelines` with `allowed_component_graphs` :pr:`2364`
         * Removed private method ``_compute_features_during_fit`` from ``PipelineBase`` :pr:`2359`
@@ -730,7 +730,7 @@
     * Enhancements
         * Added `date_index` as a required parameter for TimeSeries problems :pr:`2217`
         * Have the ``OneHotEncoder`` return the transformed columns as booleans rather than floats :pr:`2170`
-        * Added Oversampler transformer component to EvalML :pr:`2079`
+        * Added Oversampler transformer component to rayml :pr:`2079`
         * Added Undersampler to AutoMLSearch, as well as arguments ``_sampler_method`` and ``sampler_balanced_ratio`` :pr:`2128`
         * Updated prediction explanations functions to allow pipelines with XGBoost estimators :pr:`2162`
         * Added partial dependence for datetime columns :pr:`2180`
@@ -746,7 +746,7 @@
         * Deleted baseline pipeline classes :pr:`2202`
         * Reverting user specified date feature PR :pr:`2155` until `pmdarima` installation fix is found :pr:`2214`
         * Updated pipeline API to accept component graph and other class attributes as instance parameters. Old pipeline API still works but will not be supported long-term. :pr:`2091`
-        * Removed all old datasplitters from EvalML :pr:`2193`
+        * Removed all old datasplitters from rayml :pr:`2193`
         * Deleted ``make_pipeline_from_components`` :pr:`2218`
     * Documentation Changes
         * Renamed dataset to clarify that its gzipped but not a tarball :pr:`2183`
@@ -762,7 +762,7 @@
     **Breaking Changes**
         * All baseline pipeline classes (``BaselineBinaryPipeline``, ``BaselineMulticlassPipeline``, ``BaselineRegressionPipeline``, etc.) have been deleted :pr:`2202`
         * Updated pipeline API to accept component graph and other class attributes as instance parameters. Old pipeline API still works but will not be supported long-term. Pipelines can now be initialized by specifying the component graph as the first parameter, and then passing in optional arguments such as ``custom_name``, ``parameters``, etc. For example, ``BinaryClassificationPipeline(["Random Forest Classifier"], parameters={})``.  :pr:`2091`
-        * Removed all old datasplitters from EvalML :pr:`2193`
+        * Removed all old datasplitters from rayml :pr:`2193`
         * Deleted utility method ``make_pipeline_from_components`` :pr:`2218`
 
 
@@ -985,7 +985,7 @@
 
     **Breaking Changes**
         * Components and pipelines return ``Woodwork`` data structures instead of ``pandas`` data structures :pr:`1668`
-        * Python 3.6 will not be actively supported due to discontinued support from EvalML dependencies.
+        * Python 3.6 will not be actively supported due to discontinued support from rayml dependencies.
         * Deprecated ``verbose`` flag is removed for ``AutoMLSearch`` :pr:`1772`
 
 
@@ -1029,7 +1029,7 @@
         * Rerunning search for ``AutoMLSearch`` results in a message thrown rather than failing the search, and removed ``has_searched`` property :pr:`1647`
         * Changed tuner class to allow and ignore single parameter values as input :pr:`1686`
         * Capped LightGBM version limit to remove bug in docs :pr:`1711`
-        * Removed support for `np.random.RandomState` in EvalML :pr:`1727`
+        * Removed support for `np.random.RandomState` in rayml :pr:`1727`
     * Documentation Changes
         * Update Model Understanding in the user guide to include ``visualize_decision_tree`` :pr:`1678`
         * Updated docs to include information about ``AutoMLSearch`` callback parameters and methods :pr:`1577`
@@ -1043,7 +1043,7 @@
     **Breaking Changes**
         * Removed ``has_searched`` property from ``AutoMLSearch`` :pr:`1647`
         * Components and pipelines return ``Woodwork`` data structures instead of ``pandas`` data structures :pr:`1668`
-        * Removed support for `np.random.RandomState` in EvalML. Rather than passing ``np.random.RandomState`` as component and pipeline random_state values, we use int random_seed :pr:`1727`
+        * Removed support for `np.random.RandomState` in rayml. Rather than passing ``np.random.RandomState`` as component and pipeline random_state values, we use int random_seed :pr:`1727`
 
 
 **v0.17.0 Dec. 29, 2020**
@@ -1093,7 +1093,7 @@
         * Updated dependencies to fix ``ImportError: cannot import name 'MaskedArray' from 'sklearn.utils.fixes'`` error and to address Woodwork and Featuretool dependencies :pr:`1540`
         * Made ``get_prediction_vs_actual_data()`` a public method :pr:`1553`
         * Updated ``Woodwork`` version requirement to v0.0.7 :pr:`1560`
-        * Move data splitters from ``evalml.automl.data_splitters`` to ``evalml.preprocessing.data_splitters`` :pr:`1597`
+        * Move data splitters from ``rayml.automl.data_splitters`` to ``rayml.preprocessing.data_splitters`` :pr:`1597`
         * Rename "# Testing" in automl log output to "# Validation" :pr:`1597`
     * Documentation Changes
         * Added partial dependence methods to API reference :pr:`1537`
@@ -1109,7 +1109,7 @@
         * Pipeline component instances can no longer be iterated through using ``Pipeline.component_graph`` :pr:`1543`
         * Update ``AutoMLSearch`` constructor to take training data instead of ``search`` and ``add_to_leaderboard`` :pr:`1597`
         * Update ``split_data`` helper args :pr:`1597`
-        * Move data splitters from ``evalml.automl.data_splitters`` to ``evalml.preprocessing.data_splitters`` :pr:`1597`
+        * Move data splitters from ``rayml.automl.data_splitters`` to ``rayml.preprocessing.data_splitters`` :pr:`1597`
         * Rename ``AutoMLSearch`` ``data_split`` arg to ``data_splitter`` :pr:`1569`
 
 
@@ -1204,10 +1204,10 @@
         * Added ``_pipelines_per_batch`` as a private argument to ``AutoMLSearch`` :pr:`1355`
     * Fixes
         * Fixed ML performance issue with ordered datasets: always shuffle data in automl's default CV splits :pr:`1265`
-        * Fixed broken ``evalml info`` CLI command :pr:`1293`
+        * Fixed broken ``rayml info`` CLI command :pr:`1293`
         * Fixed ``boosting type='rf'`` for LightGBM Classifier, as well as ``num_leaves`` error :pr:`1302`
         * Fixed bug in ``explain_predictions_best_worst`` where a custom index in the target variable would cause a ``ValueError`` :pr:`1318`
-        * Added stacked ensemble estimators to to ``evalml.pipelines.__init__`` file :pr:`1326`
+        * Added stacked ensemble estimators to to ``rayml.pipelines.__init__`` file :pr:`1326`
         * Fixed bug in OHE where calls to transform were not deterministic if ``top_n`` was less than the number of categories in a column :pr:`1324`
         * Fixed LightGBM warning messages during AutoMLSearch :pr:`1342`
         * Fix warnings thrown during AutoMLSearch in ``HighVarianceCVDataCheck`` :pr:`1346`
@@ -1226,12 +1226,12 @@
         * Added DecisionTree estimators to API Reference :pr:`1246`
         * Changed class inheritance display to flow vertically :pr:`1248`
         * Updated cost-benefit tutorial to use a holdout/test set :pr:`1159`
-        * Added ``evalml info`` command to documentation :pr:`1293`
+        * Added ``rayml info`` command to documentation :pr:`1293`
         * Miscellaneous doc updates :pr:`1269`
         * Removed conda pre-release testing from the release process document :pr:`1282`
         * Updates to contributing guide :pr:`1310`
         * Added Alteryx footer to docs with Twitter and Github link :pr:`1312`
-        * Added documentation for evalml installation for Python 3.6 :pr:`1322`
+        * Added documentation for rayml installation for Python 3.6 :pr:`1322`
         * Added documentation changes to make the API Docs easier to understand :pr:`1323`
         * Fixed documentation for ``feature_importance`` :pr:`1353`
         * Added tutorial for running `AutoML` with text data :pr:`1357`
@@ -1302,7 +1302,7 @@
 **v0.13.2 Sep. 17, 2020**
     * Enhancements
         * Added ``output_format`` field to explain predictions functions :pr:`1107`
-        * Modified ``get_objective`` and ``get_objectives`` to be able to return any objective in ``evalml.objectives`` :pr:`1132`
+        * Modified ``get_objective`` and ``get_objectives`` to be able to return any objective in ``rayml.objectives`` :pr:`1132`
         * Added a ``return_instance`` boolean parameter to ``get_objective`` :pr:`1132`
         * Added ``ClassImbalanceDataCheck`` to determine whether target imbalance falls below a given threshold :pr:`1135`
         * Added label encoder to LightGBM for binary classification :pr:`1152`
@@ -1343,7 +1343,7 @@
 
     **Breaking Changes**
         * ``get_objective`` will now return a class definition rather than an instance by default :pr:`1132`
-        * Deleted ``OPTIONS`` dictionary in ``evalml.objectives.utils.py`` :pr:`1132`
+        * Deleted ``OPTIONS`` dictionary in ``rayml.objectives.utils.py`` :pr:`1132`
         * If specifying an objective by string, the string must now match the objective's name field, case-insensitive :pr:`1132`
         * Passing "Cost Benefit Matrix", "Fraud Cost", "Lead Scoring", "Mean Squared Log Error",
             "Recall", "Recall Macro", "Recall Micro", "Recall Weighted", or "Root Mean Squared Log Error" to ``AutoMLSearch`` will now result in a ``ValueError``
@@ -1377,10 +1377,10 @@
         * Fixed logic in ``calculate_percent_difference`` so that it can handle negative values :pr:`1100`
     * Changes
         * Added ``needs_fitting`` property to ``ComponentBase`` :pr:`1044`
-        * Updated references to data types to use datatype lists defined in ``evalml.utils.gen_utils`` :pr:`1039`
+        * Updated references to data types to use datatype lists defined in ``rayml.utils.gen_utils`` :pr:`1039`
         * Remove maximum version limit for SciPy dependency :pr:`1051`
         * Moved ``all_components`` and other component importers into runtime methods :pr:`1045`
-        * Consolidated graphing utility methods under ``evalml.utils.graph_utils`` :pr:`1060`
+        * Consolidated graphing utility methods under ``rayml.utils.graph_utils`` :pr:`1060`
         * Made slight tweaks to how ``TextFeaturizer`` uses ``featuretools``, and did some refactoring of that and of LSA :pr:`1090`
         * Changed ``show_all_features`` parameter into ``importance_threshold``, which allows for thresholding feature importance :pr:`1097`, :pr:`1103`
     * Documentation Changes
@@ -1389,14 +1389,14 @@
         * Updated ``model_understanding.ipynb`` to include documentation for using plotly on Jupyter Lab :pr:`1108`
     * Testing Changes
         * Refactor CircleCI tests to use matrix jobs (:pr:`1043`)
-        * Added a test to check that all test directories are included in evalml package :pr:`1054`
+        * Added a test to check that all test directories are included in rayml package :pr:`1054`
 
 
 .. warning::
 
     **Breaking Changes**
-        * ``confusion_matrix`` and ``normalize_confusion_matrix`` have been moved to ``evalml.utils`` :pr:`1038`
-        * All graph utility methods previously under ``evalml.pipelines.graph_utils`` have been moved to ``evalml.utils.graph_utils`` :pr:`1060`
+        * ``confusion_matrix`` and ``normalize_confusion_matrix`` have been moved to ``rayml.utils`` :pr:`1038`
+        * All graph utility methods previously under ``rayml.pipelines.graph_utils`` have been moved to ``rayml.utils.graph_utils`` :pr:`1060`
 
 
 **v0.12.2 Aug. 6, 2020**
@@ -1410,7 +1410,7 @@
     * Documentation Changes
         * Add note about version numbers to release process docs :pr:`1034`
     * Testing Changes
-        * Test files are now included in the evalml package :pr:`1029`
+        * Test files are now included in the rayml package :pr:`1029`
 
 
 **v0.12.0 Aug. 3, 2020**
@@ -1432,9 +1432,9 @@
         * Fixed ``UnboundLocalError`` for ``cv_pipeline`` when automl search errors :pr:`996`
         * Fixed ``Imputer`` to reset dataframe index to preserve behavior expected from  ``SimpleImputer`` :pr:`1009`
     * Changes
-        * Moved ``get_estimators`` to ``evalml.pipelines.components.utils`` :pr:`934`
+        * Moved ``get_estimators`` to ``rayml.pipelines.components.utils`` :pr:`934`
         * Modified Pipelines to raise ``PipelineScoreError`` when they encounter an error during scoring :pr:`936`
-        * Moved ``evalml.model_families.list_model_families`` to ``evalml.pipelines.components.allowed_model_families`` :pr:`959`
+        * Moved ``rayml.model_families.list_model_families`` to ``rayml.pipelines.components.allowed_model_families`` :pr:`959`
         * Renamed ``DateTimeFeaturization`` to ``DateTimeFeaturizer`` :pr:`977`
         * Added check to stop search and raise an error if all pipelines in a batch return NaN scores :pr:`1015`
     * Documentation Changes
@@ -1453,10 +1453,10 @@
 .. warning::
 
     **Breaking Changes**
-        * ``get_estimators`` has been moved to ``evalml.pipelines.components.utils`` (previously was under ``evalml.pipelines.utils``) :pr:`934`
+        * ``get_estimators`` has been moved to ``rayml.pipelines.components.utils`` (previously was under ``rayml.pipelines.utils``) :pr:`934`
         * Removed the ``raise_errors`` flag in AutoML search. All errors during pipeline evaluation will be caught and logged. :pr:`936`
-        * ``evalml.model_families.list_model_families`` has been moved to ``evalml.pipelines.components.allowed_model_families`` :pr:`959`
-        * ``TextFeaturizer``: the ``featuretools`` and ``nlp_primitives`` packages must be installed after installing evalml in order to use this component :pr:`976`
+        * ``rayml.model_families.list_model_families`` has been moved to ``rayml.pipelines.components.allowed_model_families`` :pr:`959`
+        * ``TextFeaturizer``: the ``featuretools`` and ``nlp_primitives`` packages must be installed after installing rayml in order to use this component :pr:`976`
         * Renamed ``DateTimeFeaturization`` to ``DateTimeFeaturizer`` :pr:`977`
 
 
@@ -1470,7 +1470,7 @@
         * Makes automl results a read-only property :pr:`919`
     * Changes
         * Deleted static pipelines and refactored tests involving static pipelines, removed ``all_pipelines()`` and ``get_pipelines()`` :pr:`904`
-        * Moved ``list_model_families`` to ``evalml.model_family.utils`` :pr:`903`
+        * Moved ``list_model_families`` to ``rayml.model_family.utils`` :pr:`903`
         * Updated ``all_pipelines``, ``all_estimators``, ``all_components`` to use the same mechanism for dynamically generating their elements :pr:`898`
         * Rename ``master`` branch to ``main`` :pr:`918`
         * Add pypi release github action :pr:`923`
@@ -1487,8 +1487,8 @@
 .. warning::
 
     **Breaking Changes**
-        * ``list_model_families`` has been moved to ``evalml.model_family.utils`` (previously was under ``evalml.pipelines.utils``) :pr:`903`
-        * ``get_estimators`` has been moved to ``evalml.pipelines.components.utils`` (previously was under ``evalml.pipelines.utils``) :pr:`934`
+        * ``list_model_families`` has been moved to ``rayml.model_family.utils`` (previously was under ``rayml.pipelines.utils``) :pr:`903`
+        * ``get_estimators`` has been moved to ``rayml.pipelines.components.utils`` (previously was under ``rayml.pipelines.utils``) :pr:`934`
         * Static pipeline definitions have been removed, but similar pipelines can still be constructed via creating an instance of ``PipelineBase`` :pr:`904`
         * ``all_pipelines()`` and ``get_pipelines()`` utility methods have been removed :pr:`904`
 
@@ -1532,7 +1532,7 @@
         * Added open source license, update some repo metadata :pr:`887`
         * Removed dead code in ``_get_preprocessing_components`` :pr:`896`
     * Documentation Changes
-        * Fix some typos and update the EvalML logo :pr:`872`
+        * Fix some typos and update the rayml logo :pr:`872`
     * Testing Changes
         * Update the changelog check job to expect the new branching pattern for the deps update bot :pr:`836`
         * Check that all components output pandas datastructures, and can accept either pandas or numpy :pr:`853`
@@ -1558,7 +1558,7 @@
         * Update ``Tuner`` classes to work directly with pipeline parameters dicts instead of flat parameter lists :pr:`779`
         * Add Elastic Net as a pipeline option :pr:`812`
         * Added new Pipeline option ``ExtraTrees`` :pr:`790`
-        * Added precicion-recall curve metrics and plot for binary classification problems in ``evalml.pipeline.graph_utils`` :pr:`794`
+        * Added precicion-recall curve metrics and plot for binary classification problems in ``rayml.pipeline.graph_utils`` :pr:`794`
         * Update the default automl algorithm to search in batches, starting with default parameters for each pipeline and iterating from there :pr:`793`
         * Added ``AutoMLAlgorithm`` class and ``IterativeAlgorithm`` impl, separated from ``AutoSearchBase`` :pr:`793`
     * Fixes
@@ -1599,11 +1599,11 @@
 
     **Breaking Changes**
         * The ``detect_label_leakage`` parameter for AutoML classes has been removed and replaced by a ``data_checks`` parameter :pr:`765`
-        * Moved ROC and confusion matrix methods from ``evalml.pipeline.plot_utils`` to ``evalml.pipeline.graph_utils`` :pr:`720`
+        * Moved ROC and confusion matrix methods from ``rayml.pipeline.plot_utils`` to ``rayml.pipeline.graph_utils`` :pr:`720`
         * ``Tuner`` classes require a pipeline hyperparameter range dict as an init arg instead of a space definition :pr:`779`
         * ``Tuner.propose`` and ``Tuner.add`` work directly with pipeline parameters dicts instead of flat parameter lists :pr:`779`
         * ``PipelineBase.hyperparameters`` and ``custom_hyperparameters`` use pipeline parameters dict format instead of being represented as a flat list :pr:`779`
-        * All guardrail functions previously under ``evalml.guardrails.utils`` will be removed and replaced by data checks :pr:`789`
+        * All guardrail functions previously under ``rayml.guardrails.utils`` will be removed and replaced by data checks :pr:`789`
         * ``Recall`` disallowed as an objective for AutoML :pr:`784`
         * ``AutoSearchBase`` parameter ``tuner`` has been renamed to ``tuner_class`` :pr:`793`
         * ``AutoSearchBase`` parameter ``possible_pipelines`` and ``possible_model_families`` have been renamed to ``allowed_pipelines`` and ``allowed_model_families`` :pr:`793`
@@ -1649,7 +1649,7 @@
         * Standardize ``import_or_raise`` error messages :pr:`683`
         * Updated argument order of objectives to align with sklearn's :pr:`698`
         * Renamed ``pipeline.feature_importance_graph`` to ``pipeline.graph_feature_importances`` :pr:`700`
-        * Moved ROC and confusion matrix methods to ``evalml.pipelines.plot_utils`` :pr:`704`
+        * Moved ROC and confusion matrix methods to ``rayml.pipelines.plot_utils`` :pr:`704`
         * Renamed ``MultiClassificationObjective`` to ``MulticlassClassificationObjective``, to align with pipeline naming scheme :pr:`715`
     * Documentation Changes
         * Fixed some sphinx warnings :pr:`593`
@@ -1690,7 +1690,7 @@
     * ``score()`` will now use a required ``objectives`` parameter that is used to determine all the objectives to score on. This differs from the previous behavior, where the pipeline's objective was scored on regardless.
     * ``score()`` will now return one dictionary of all objective scores.
     * ``ROC`` and ``ConfusionMatrix`` plot methods via ``Auto(*).plot`` have been removed by :pr:`615` and are replaced by ``roc_curve`` and ``confusion_matrix`` in ``evamlm.pipelines.plot_utils`` in :pr:`704`
-    * ``normalize_confusion_matrix`` has been moved to ``evalml.pipelines.plot_utils`` :pr:`704`
+    * ``normalize_confusion_matrix`` has been moved to ``rayml.pipelines.plot_utils`` :pr:`704`
     * Pipelines ``_name`` field changed to ``custom_name``
     * Pipelines ``supported_problem_types`` field is removed because it is no longer necessary :pr:`678`
     * Updated argument order of objectives' ``objective_function`` to align with sklearn :pr:`698`
@@ -1902,7 +1902,7 @@
         * Documentation Changes
         * Added docstrings :pr:`6`
         * Created notebooks for docs :pr:`6`
-        * Initialized readthedocs EvalML :pr:`6`
+        * Initialized readthedocs rayml :pr:`6`
         * Added favicon :pr:`38`
     * Testing Changes
         * Added testing for loading data :pr:`39`

@@ -2,15 +2,15 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - 'evalml/utils/update_checker.py'
+      - 'rayml/utils/update_checker.py'
   push:
     branches:
       - main
 
 name: Install Test
 jobs:
-  install_evalml:
-    name: ${{ matrix.python_version }} install EvalML
+  install_rayml:
+    name: ${{ matrix.python_version }} install rayml
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -23,7 +23,7 @@ jobs:
           python-version: ${{ matrix.python_version }}
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Install EvalML and update checker
+      - name: Install rayml and update checker
         run: |
           pip config --site set global.progress_bar off
           python -m pip install --upgrade pip

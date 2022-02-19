@@ -3,16 +3,16 @@
 ## 0. Pre-Release Checklist
 Before starting the release process, verify the following:
 * All work required for this release has been completed and the team is ready to release.
-* [All Github Actions tests are green on main](https://github.com/alteryx/evalml/actions?query=branch%3Amain).
-* The [ReadtheDocs build](https://readthedocs.com/projects/feature-labs-inc-evalml/builds/) for "latest" is marked as passed. To avoid mysterious errors, best practice is to empty your browser cache when reading new versions of the docs!
-* The [public documentation for the "latest" branch](https://evalml.featurelabs.com/en/latest/) looks correct, and the [release notes](https://evalml.featurelabs.com/en/latest/release_notes.html) includes the last change which was made on main.
+* [All Github Actions tests are green on main](https://github.com/alteryx/rayml/actions?query=branch%3Amain).
+* The [ReadtheDocs build](https://readthedocs.com/projects/feature-labs-inc-rayml/builds/) for "latest" is marked as passed. To avoid mysterious errors, best practice is to empty your browser cache when reading new versions of the docs!
+* The [public documentation for the "latest" branch](https://rayml.featurelabs.com/en/latest/) looks correct, and the [release notes](https://rayml.featurelabs.com/en/latest/release_notes.html) includes the last change which was made on main.
 * Get agreement on the version number to use for the release.
 
 #### Version Numbering
 
-EvalML uses [semantic versioning](https://semver.org/). Every release has a major, minor and patch version number, and are displayed like so: `<majorVersion>.<minorVersion>.<patchVersion>`.
+rayml uses [semantic versioning](https://semver.org/). Every release has a major, minor and patch version number, and are displayed like so: `<majorVersion>.<minorVersion>.<patchVersion>`.
 
-If you'd like to create a development release, which won't be deployed to pypi and conda and marked as a generally-available production release, please add a "dev" prefix to the patch version, i.e. `X.X.devX`. Note this claims the patch number--if the previous release was `0.12.0`, a subsequent dev release would be `0.12.dev1`, and the following release would be `0.12.2`, *not* `0.12.1`. Development releases deploy to [test.pypi.org](https://test.pypi.org/project/evalml/) instead of to [pypi.org](https://pypi.org/project/evalml).
+If you'd like to create a development release, which won't be deployed to pypi and conda and marked as a generally-available production release, please add a "dev" prefix to the patch version, i.e. `X.X.devX`. Note this claims the patch number--if the previous release was `0.12.0`, a subsequent dev release would be `0.12.dev1`, and the following release would be `0.12.2`, *not* `0.12.1`. Development releases deploy to [test.pypi.org](https://test.pypi.org/project/rayml/) instead of to [pypi.org](https://pypi.org/project/rayml).
 
 ## 1. Freeze `main` and run perf tests
 After confirming the release is ready to go in step 0, we'll freeze the `main` branch and kick off the release performance tests.
@@ -23,13 +23,13 @@ Once a perf test document has been reviewed and approved by the team, we'll move
 Please use the following pattern for the release PR branch name: "release_vX.X.X". Doing so will bypass our release notes checkin test which requires all other PRs to add a release note entry.
 
 Create a release PR with the following changes:
-* Update `setup.py` and `evalml/__init__.py` to bump `__version__` to the new version.
+* Update `setup.py` and `rayml/__init__.py` to bump `__version__` to the new version.
 * Move all entries in `docs/source/release_notes.rst` currently listed under `**Future Releases**` to be under a new heading with the version number and release date.
 * Make sure `**Future Releases**` is empty except for the sub-headings, so it's ready for new entries.
 * Populate the release PR body with a copy of this release's release notes, reformatted to [GitHub markdown](https://guides.github.com/features/mastering-markdown/). You'll reuse this text in step 2. You can generate the markdown by running `tools/format_release_notes.sh` locally.
 * Confirm that all release items are in the release notes under the correct header, and that no extra items are listed. You may have to do an "empty cache and hard reset" in your browser to see updates.
 
-An example can be found here: https://github.com/alteryx/evalml/pull/163
+An example can be found here: https://github.com/alteryx/rayml/pull/163
 
 Checklist before merging:
 * PR has been reviewed and approved.
@@ -52,13 +52,13 @@ Note that by targeting `main`, there must be no new merges to `main` from the mo
 
 Save the release as a draft and make sure it looks correct. You could start the draft while waiting for the release PR to be ready to merge.
 
-When it's ready to go, hit "Publish release." This will create a "vX.X.X" tag for the release, which tells ReadtheDocs to build and update the "stable" version. This will also deploy the release [to pypi](https://pypi.org/project/evalml/), making it publicly accessible!
+When it's ready to go, hit "Publish release." This will create a "vX.X.X" tag for the release, which tells ReadtheDocs to build and update the "stable" version. This will also deploy the release [to pypi](https://pypi.org/project/rayml/), making it publicly accessible!
 
 ## 4. Make Documentation Public for Release Version
 Creating the GitHub release should have updated the default `stable` docs branch to point at the new version. You'll now need to activate the new release version on ReadtheDocs so its publicly visible in the list of versions. This is important so users can view old documentation versions which match their installed version.
 
 Please do the following:
-* Log in to our ReadtheDocs account and go [here](https://readthedocs.com/projects/feature-labs-inc-evalml/versions/) to view the version list.
+* Log in to our ReadtheDocs account and go [here](https://readthedocs.com/projects/feature-labs-inc-rayml/versions/) to view the version list.
 * Find "vX.X.X" in the version list, and click "Edit" on the right.
 * Check the "Active" checkbox and set privacy level to "Public", then click "Save"
 * Verify "vX.X.X" is now visible as a version on our ReadtheDocs page. You may have to do an "empty cache and hard reset" in your browser to see updates.
@@ -67,32 +67,32 @@ Please do the following:
 ## 5. Verify the release package has been deployed
 Now that the release has been made in the repo, to pypi and in our documentation, the final step is making sure the new release is publicly pip-installable via pypi.
 
-In a fresh virtualenv, install evalml via pip and ensure it installs successfully:
+In a fresh virtualenv, install rayml via pip and ensure it installs successfully:
 ```shell
 # should come back empty
-pip freeze | grep evalml
+pip freeze | grep rayml
 
-pip install evalml
+pip install rayml
 python --version
 # should now list the correct version
-python -c "import evalml; print(evalml.__version__)"
-pip freeze | grep evalml
+python -c "import rayml; print(rayml.__version__)"
+pip freeze | grep rayml
 ```
 
-Note: make sure when you do this that you're in a virtualenv, your current working directory isn't in the evalml repo, and that you haven't added your repo to the `PYTHONPATH`, because in both cases python could pick up the repo instead, even in a virtualenv.
+Note: make sure when you do this that you're in a virtualenv, your current working directory isn't in the rayml repo, and that you haven't added your repo to the `PYTHONPATH`, because in both cases python could pick up the repo instead, even in a virtualenv.
 
 ## 6. Publish Our New Conda Package
 
-A couple of hours after you publish the GitHub release, a bot will open a PR to our [feedstock](https://github.com/conda-forge/evalml-core-feedstock) that automatically
+A couple of hours after you publish the GitHub release, a bot will open a PR to our [feedstock](https://github.com/conda-forge/rayml-core-feedstock) that automatically
 bumps the recipe to use the latest version of the package.
 In order to publish our latest conda package, we need to make some changes to the bot's PR and merge it.
 
 The bot's PR will will remove the quotes around the version tag in the recipe.
 Removing these quotes will break our `build_conda_pkg` CI job so add them back in and push your changes to the bot's PR. 
-For example, lines 3-5 of the [recipe](https://github.com/conda-forge/evalml-core-feedstock/blob/master/recipe/meta.yaml) should look like the following:
+For example, lines 3-5 of the [recipe](https://github.com/conda-forge/rayml-core-feedstock/blob/master/recipe/meta.yaml) should look like the following:
 ```yaml
 package:
-  name: evalml-core
+  name: rayml-core
   version: '{{ version }}'
 ```
 For help on how to push changes to the bot's PR please read this [document.](https://conda-forge.org/docs/maintainer/updating_pkgs.html#pushing-to-regro-cf-autotick-bot-branch)
@@ -104,11 +104,11 @@ verifies whether the dependency versions of the conda update PR match the versio
 After you make the necessary changes and merge the PR, our latest package will be deployed to conda-forge! To verify, run this in a fresh conda environment:
 
 ```shell
-conda install -c conda-forge evalml
+conda install -c conda-forge rayml
 ```
 
-Verify the latest version of `evalml` got installed by running 
+Verify the latest version of `rayml` got installed by running 
 
 ```shell
-python -c "import evalml; print(evalml.__version__)"
+python -c "import rayml; print(rayml.__version__)"
 ```

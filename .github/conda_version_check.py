@@ -32,19 +32,19 @@ def standardize_format(packages):
     return standardized_package_specifiers
 
 
-def get_evalml_pip_requirements(evalml_path):
-    core_reqs = open(pathlib.Path(evalml_path, "core-requirements.txt")).readlines()
-    extra_reqs = open(pathlib.Path(evalml_path, "requirements.txt")).readlines()
+def get_rayml_pip_requirements(rayml_path):
+    core_reqs = open(pathlib.Path(rayml_path, "core-requirements.txt")).readlines()
+    extra_reqs = open(pathlib.Path(rayml_path, "requirements.txt")).readlines()
     extra_reqs = [req for req in extra_reqs if "-r core-requirements.txt" not in req]
     all_reqs = core_reqs + extra_reqs
     return standardize_format(requirements.parse("".join(all_reqs)))
 
 
-def get_evalml_conda_requirements(conda_recipe):
+def get_rayml_conda_requirements(conda_recipe):
     with read_conda_yaml(conda_recipe) as recipe:
         core_reqs = recipe['outputs'][0]['requirements']['run']
         extra_reqs = recipe['outputs'][1]['requirements']['run']
-        extra_reqs = [package for package in extra_reqs if "evalml-core" not in package]
+        extra_reqs = [package for package in extra_reqs if "rayml-core" not in package]
         all_reqs = core_reqs + extra_reqs
     return standardize_format(requirements.parse("\n".join(all_reqs)))
 
@@ -52,8 +52,8 @@ def get_evalml_conda_requirements(conda_recipe):
 def check_versions():
     conda_recipe_file_path = pathlib.Path(os.getcwd(), '.github', 'meta.yaml')
     pip_requirements_path = pathlib.Path(os.getcwd())
-    conda_versions = sorted(get_evalml_conda_requirements(conda_recipe_file_path))
-    pip_versions = sorted(get_evalml_pip_requirements(pip_requirements_path))
+    conda_versions = sorted(get_rayml_conda_requirements(conda_recipe_file_path))
+    pip_versions = sorted(get_rayml_pip_requirements(pip_requirements_path))
     if conda_versions != pip_versions:
         conda_not_in_pip = set(conda_versions).difference(pip_versions)
         conda_not_in_pip = ["\t" + version for version in conda_not_in_pip]

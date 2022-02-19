@@ -11,4 +11,4 @@ codecov:
     wait_for_ci: true
 
 ignore:
-  - "evalml/utils/update_checker.py"
+  - "rayml/utils/update_checker.py"

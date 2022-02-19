@@ -10,11 +10,11 @@ extras_require = {
 extras_require['complete'] = sorted(set(sum(extras_require.values(), [])))
 
 setup(
-    name='evalml',
+    name='rayml',
     version='0.45.0',
     author='GCODE.ai',
     author_email='mike@gcode.ai',
-    description='RayML is based on EvalML and modified to integrate ray, which builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.',
+    description='RayML is based on rayml and modified to integrate ray, which builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/gcode-ai/rayml/',
@@ -26,12 +26,12 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'evalml = evalml.__main__:cli'
+            'rayml = rayml.__main__:cli'
         ]
     },
-    data_files=[('evalml/tests/data', ['evalml/tests/data/churn.csv',
-                                       'evalml/tests/data/daily-min-temperatures.csv',
-                                       'evalml/tests/data/fraud_transactions.csv.gz',
-                                       'evalml/tests/data/tips.csv',
-                                       'evalml/tests/data/titanic.csv'])],
+    data_files=[('rayml/tests/data', ['rayml/tests/data/churn.csv',
+                                       'rayml/tests/data/daily-min-temperatures.csv',
+                                       'rayml/tests/data/fraud_transactions.csv.gz',
+                                       'rayml/tests/data/tips.csv',
+                                       'rayml/tests/data/titanic.csv'])],
 )

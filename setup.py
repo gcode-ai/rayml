@@ -14,7 +14,7 @@ setup(
     version='0.45.0',
     author='Alteryx, Inc.',
     author_email='open_source_support@alteryx.com',
-    description='EvalML is an AutoML library that builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.',
+    description='RayML is based on EvalML and modified to integrate ray, which builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions.',
     long_description=long_description,
     long_description_content_type="text/markdown",
     url='https://github.com/alteryx/evalml/',
